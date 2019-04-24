@@ -5,19 +5,8 @@ namespace App\Http\Controllers\Wechat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
-
-
-
-
-define("TOKEN", "blogWechat");
-/*define("TOKEN", "blogWechat");    //定义TOKEN, “peng”是自己随便定义，这一句很重要！！！
-$wechatObj = new WechatController();
-
-if (!isset($_GET['echostr'])) {
-    $wechatObj->LogicAction();    //后续的有实质功能的function(此篇不用管）
-}else{
-    $wechatObj->valid();    //调用valid函数进行基本配置
-}*/
+use Illuminate\Support\Facades\Redis;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 
 class WechatController extends Controller
@@ -40,16 +29,19 @@ class WechatController extends Controller
 
 
         $resu = doGet($this->wechatTokenManages());
+
+        $session = Redis::get();
+
         Log::debug('请求:'.$resu);
         dd($resu);
         exit();
 
 
         Log::debug('请求:'.$request);
-
-        $echoStr = $this->valid($request->signature,$request->timestamp,$request->nonce);
+        //初始化“服务器配置”调用，之后就不需要了
+        /*$echoStr = $this->valid($request->signature,$request->timestamp,$request->nonce);
         echo $echoStr;
-        exit;
+        exit;*/
     }
 
     public function valid($signature,$timestamp,$nonce){    //用于基本配置的函数
@@ -64,7 +56,7 @@ class WechatController extends Controller
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
         $nonce = $_GET["nonce"];
-        $token = TOKEN;
+        $token = env('WECHAT_TOKEN');
         $tmpArr = array($token, $timestamp, $nonce);
         sort($tmpArr, SORT_STRING);
         $tmpStr = implode( $tmpArr );
