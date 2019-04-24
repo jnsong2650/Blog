@@ -71,8 +71,9 @@ class WechatController extends Controller
     }
 
 
-    public function LogicAction()
+    public function wechatTokenManages()
     {
+        $path = env('WECHAT_URL').'cgi-bin/token?grant_type=client_credential&appid='.env('WECHAT_APPID').'&secret='.env('WECHAT_SECRET');
 
     }
 
