@@ -5,6 +5,16 @@ namespace App\Http\Controllers\Wechat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+define("TOKEN", "blogWechat");    //定义TOKEN, “peng”是自己随便定义，这一句很重要！！！
+$wechatObj = new WechatController();
+
+if (!isset($_GET['echostr'])) {
+    $wechatObj->LogicAction();    //后续的有实质功能的function(此篇不用管）
+}else{
+    $wechatObj->valid();    //调用valid函数进行基本配置
+}
+
+
 class WechatController extends Controller
 {
     private $access_token;    //定义一个access_token，用于后续调用微信接口（此篇用不到）
@@ -13,13 +23,8 @@ class WechatController extends Controller
     public function wechatDefault()
     {
 
-        define("TOKEN", "blogWechat");    //定义TOKEN, “peng”是自己随便定义，这一句很重要！！！
-        $wechatObj = new wechatCallbackapiTest();
-        if (!isset($_GET['echostr'])) {
-            $wechatObj->LogicAction();    //后续的有实质功能的function(此篇不用管）
-        }else{
-            $wechatObj->valid();    //调用valid函数进行基本配置
-        }
+
+
 
     }
 
