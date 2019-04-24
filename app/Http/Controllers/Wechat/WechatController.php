@@ -13,7 +13,7 @@ class WechatController extends Controller
     public function wechatDefault()
     {
 
-        define("TOKEN", "peng");    //定义TOKEN, “peng”是自己随便定义，这一句很重要！！！
+        define("TOKEN", "blogWechat");    //定义TOKEN, “peng”是自己随便定义，这一句很重要！！！
         $wechatObj = new wechatCallbackapiTest();
         if (!isset($_GET['echostr'])) {
             $wechatObj->LogicAction();    //后续的有实质功能的function(此篇不用管）
@@ -21,21 +21,15 @@ class WechatController extends Controller
             $wechatObj->valid();    //调用valid函数进行基本配置
         }
 
+    }
 
+    public function valid(){    //用于基本配置的函数
+        $echoStr = $_GET["echostr"];
 
-
-
-
-        public function valid(){    //用于基本配置的函数
-            $echoStr = $_GET["echostr"];
-
-            if($this->checkSignature()){
-                echo $echoStr;
-                exit;
-            }
+        if($this->checkSignature()){
+            echo $echoStr;
+            exit;
         }
-
-
     }
 
     private function checkSignature()
