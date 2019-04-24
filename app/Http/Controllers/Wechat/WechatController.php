@@ -37,7 +37,7 @@ class WechatController extends Controller
     //微信服务器地址
     public function wechatDefault(Request $request)
     {
-
+        echo 'adf';
         Log::info('微信初始化日志: '.json_encode($request));
         exit();
     }
