@@ -16,4 +16,4 @@ Route::get('/', function () {
 });
 
 
-Route::get('wechat', 'Wechat/WechatController@wechatDefault');
+Route::get('wechat', 'Wechat\WechatController@wechatDefault');
