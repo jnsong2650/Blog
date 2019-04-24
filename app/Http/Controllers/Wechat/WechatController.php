@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 
 
 
-
+define("TOKEN", "blogWechat");
 /*define("TOKEN", "blogWechat");    //定义TOKEN, “peng”是自己随便定义，这一句很重要！！！
 $wechatObj = new WechatController();
 
@@ -37,21 +37,19 @@ class WechatController extends Controller
     //微信服务器地址
     public function wechatDefault(Request $request)
     {
-        echo 'adf';
-        Log::info('微信初始化日志: '.$request);
-        exit();
+        $echoStr = $this->valid($request->signature,$request->timestamp,$request->nonce);
+        echo $echoStr;
+        exit;
     }
 
-    public function valid(){    //用于基本配置的函数
+    public function valid($signature,$timestamp,$nonce){    //用于基本配置的函数
         $echoStr = $_GET["echostr"];
-
-        if($this->checkSignature()){
-            echo $echoStr;
-            exit;
+        if($this->checkSignature($signature,$timestamp,$nonce)){
+            return $echoStr;
         }
     }
 
-    private function checkSignature()
+    private function checkSignature($signature,$timestamp,$nonce)
     {
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
