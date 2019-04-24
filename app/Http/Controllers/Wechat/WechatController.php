@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Wechat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+
+
+
+
+
 define("TOKEN", "blogWechat");    //定义TOKEN, “peng”是自己随便定义，这一句很重要！！！
 $wechatObj = new WechatController();
 
@@ -23,7 +28,7 @@ class WechatController extends Controller
     public function wechatDefault()
     {
 
-
+        echo 'dsfsdfs';
 
 
     }
