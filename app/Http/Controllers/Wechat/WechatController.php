@@ -38,7 +38,7 @@ class WechatController extends Controller
     public function wechatDefault(Request $request)
     {
         echo 'adf';
-        Log::info('微信初始化日志: '.json_encode($request));
+        Log::info('微信初始化日志: '.$request);
         exit();
     }
 
