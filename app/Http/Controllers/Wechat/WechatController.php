@@ -37,6 +37,9 @@ class WechatController extends Controller
     //微信服务器地址
     public function wechatDefault(Request $request)
     {
+
+        Log::debug('请求:'.$request);
+
         $echoStr = $this->valid($request->signature,$request->timestamp,$request->nonce);
         echo $echoStr;
         exit;
