@@ -12,8 +12,6 @@ class WechatController extends Controller
     //微信服务器地址
     public function wechatDefault()
     {
-        //构造函数
-        public function __construct(){}
 
         define("TOKEN", "peng");    //定义TOKEN, “peng”是自己随便定义，这一句很重要！！！
         $wechatObj = new wechatCallbackapiTest();
