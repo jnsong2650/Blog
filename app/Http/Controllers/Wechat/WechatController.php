@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Wechat;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Redis;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 
 class WechatController extends Controller
@@ -30,7 +29,7 @@ class WechatController extends Controller
 
         $resu = doGet($this->wechatTokenManages());
 
-        $session = Redis::get();
+       Redis::spy();
 
         Log::debug('请求:'.$resu);
         dd($resu);
