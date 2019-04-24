@@ -38,6 +38,13 @@ class WechatController extends Controller
     public function wechatDefault(Request $request)
     {
 
+
+        $resu = doGet($this->wechatTokenManages());
+        Log::debug('请求:'.$resu);
+        dd($resu);
+        exit();
+
+
         Log::debug('请求:'.$request);
 
         $echoStr = $this->valid($request->signature,$request->timestamp,$request->nonce);
@@ -74,7 +81,7 @@ class WechatController extends Controller
     public function wechatTokenManages()
     {
         $path = env('WECHAT_URL').'cgi-bin/token?grant_type=client_credential&appid='.env('WECHAT_APPID').'&secret='.env('WECHAT_SECRET');
-
+        return $path;
     }
 
 
